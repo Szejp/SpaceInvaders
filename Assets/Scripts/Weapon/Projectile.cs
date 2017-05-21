@@ -18,7 +18,7 @@ public class Projectile : MonoBehaviour
     [SerializeField]
     public float projectileSpeed = 7000;
 
-    protected void Start()
+    protected virtual void Start()
     {
         time = Time.realtimeSinceStartup;
     }
