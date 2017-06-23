@@ -1,10 +1,12 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class GameOvermind : MonoSingleton<GameOvermind>, ISpaceInvaders {
     public Text scoreScreen;
     public int score = 0;
+    public GameMode gameMode = GameMode.Versus;
 
     [Header("Movement constraints")]
     public float leftConstraint;
@@ -26,7 +28,8 @@ public class GameOvermind : MonoSingleton<GameOvermind>, ISpaceInvaders {
             agent2.Disable();
         }
 
-        if (agent1 != null && projectile != null && projectile.objectFiredFrom.GetType() != agent1.GetType()) {
+        if (agent1 != null && projectile != null) {
+            // if (agent1 != null && projectile != null && projectile.objectFiredFrom.GetType() != agent1.GetType()) {
             agent1.SetDamage(projectile.Damage);
             Destroy(projectile.gameObject);
         }
@@ -42,5 +45,12 @@ public class GameOvermind : MonoSingleton<GameOvermind>, ISpaceInvaders {
             scoreScreen.text = score.ToString();
             Debug.Log("event");
         });
+
+        Player.OnPlayerDestroyed += () => SceneManager.LoadScene(0);
     }
+}
+
+public enum GameMode {
+    Versus,
+    Single
 }

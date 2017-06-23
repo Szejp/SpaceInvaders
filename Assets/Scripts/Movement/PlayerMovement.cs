@@ -2,41 +2,28 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : Movement
-{
-    protected override void Start()
-    {
+public class PlayerMovement : Movement {
+    protected override void Start() {
         base.Start();
     }
 
-    private void Update()
-    {
+    private void Update() {
         MoveWithKeys();
     }
 
-    private void ExecuteCommand(Command cmd)
-    {
-        cmd.Execute();
-    }
-
-    private void MoveWithKeys()
-    {
-        if (Input.GetKey(KeyCode.LeftArrow))
-        {
+    private void MoveWithKeys() {
+        if (Input.GetKey(KeyCode.LeftArrow)) {
             ExecuteCommand(moveLeft);
         }
 
-        if (Input.GetKey(KeyCode.RightArrow))
-        {
+        if (Input.GetKey(KeyCode.RightArrow)) {
             ExecuteCommand(moveRight);
         }
-        if (Input.GetKey(KeyCode.UpArrow))
-        {
+        if (Input.GetKey(KeyCode.UpArrow)) {
             ExecuteCommand(moveUp);
         }
 
-        if (Input.GetKey(KeyCode.DownArrow))
-        {
+        if (Input.GetKey(KeyCode.DownArrow)) {
             ExecuteCommand(moveDown);
         }
     }
